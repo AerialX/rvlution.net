@@ -1,0 +1,17 @@
+﻿<?xml version="1.0"?>
+	<wiidisc version="1">
+	<id game="RMG" />
+	<options>
+		<section name="Testing">
+			<option name="Super Mario Galaxy">
+				<choice name="Enabled">
+					<patch id="smg" />
+				</choice>
+			</option>
+		</section>
+	</options>
+	<patch id="smg">
+		<folder external="/smg" recursive="false" />
+		<folder external="/smg" disc="/" />
+	</patch>
+</wiidisc>

@@ -1,0 +1,82 @@
+---
+title: Patch Templates
+permalink: wiki/Patch_Templates/
+layout: wiki
+---
+<p>This page hosts XMLs for common games that you can be used to do some game modification testing. They should go directly in the <i>/riivolution</i> folder on your SD card or USB drive.
+</p><p><b>NOTE</b>: These XMLs do not do anything on their own; you must supply the content for patching. If you are looking for a game hack to just download and play, check out our <a href="../Hacks" title="Hacks" class="mw-redirect">Hacks</a> page instead.
+Another quickstart way of using Riivolution is to check out the <a href="../List_of_RiiFS_servers" title="List of RiiFS servers">list of servers</a> you can connect to.
+</p><p>To use these, right-click and save link as.
+</p>
+<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#All_Games"><span class="tocnumber">1</span> <span class="toctext">All Games</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Ocarina_Codes"><span class="tocnumber">1.1</span> <span class="toctext">Ocarina Codes</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="#Redirected_Savegames"><span class="tocnumber">1.2</span> <span class="toctext">Redirected Savegames</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-4"><a href="#Mario_Kart_Wii"><span class="tocnumber">2</span> <span class="toctext">Mario Kart Wii</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#New_Super_Mario_Bros._Wii"><span class="tocnumber">3</span> <span class="toctext">New Super Mario Bros. Wii</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#Super_Smash_Bros._Brawl"><span class="tocnumber">4</span> <span class="toctext">Super Smash Bros. Brawl</span></a>
+<ul>
+<li class="toclevel-2 tocsection-7"><a href="#File_Replacement_Code_Support"><span class="tocnumber">4.1</span> <span class="toctext">File Replacement Code Support</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-8"><a href="#Tatsunoko_vs._Capcom"><span class="tocnumber">5</span> <span class="toctext">Tatsunoko vs. Capcom</span></a></li>
+<li class="toclevel-1 tocsection-9"><a href="#Super_Mario_Galaxy"><span class="tocnumber">6</span> <span class="toctext">Super Mario Galaxy</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="All_Games">All Games</span></h2>
+<h3><span class="mw-headline" id="Ocarina_Codes">Ocarina Codes</span></h3>
+<p>This XML package can be used to run your Ocarina codes just as you have been using them with Gecko OS, in <i>/codes/GAMEID.gct</i>.
+The XML no longer requires you to change GAMEID as it now uses the info from the disc inserted to get the name for the loaded gct.
+</p><p><a href="../RiiOcarina.zip" class="internal" title="RiiOcarina.zip">Download</a>
+</p><p><b>NOTE</b>: For Super Smash Bros Brawl, many code sets are larger than the default allowed size for Ocarina codes, and will require a special XML to work properly. That's not to say this package doesn't work for Brawl, but large sets like Brawl+ or Brawl- require a specific XML to work.
+</p>
+<h3><span class="mw-headline" id="Redirected_Savegames">Redirected Savegames</span></h3>
+<p>This XML can be placed on a device to redirect all of your savegames at once. It will store them in the <i>/riivolution/save</i> folder when enabled. It can be used if you wish to play a game and store all your saves on SD/USB rather than on your Wii.
+</p><p><a href="../SaveTemplate.xml" class="internal" title="SaveTemplate.xml">Download</a>
+</p>
+<h2><span class="mw-headline" id="Mario_Kart_Wii">Mario Kart Wii</span></h2>
+<p>This XML will load any files made for Mario Kart Wii. Simply place your files in the <i>/mkw</i> folder (ex: SD:/mkw/farm_course.szs).
+</p><p><a href="../MKWtemplate.xml" class="internal" title="MKWtemplate.xml">Download</a>
+</p>
+<h2><span class="mw-headline" id="New_Super_Mario_Bros._Wii">New Super Mario Bros. Wii</span></h2>
+<p>This can be used to try out levels made with the <a rel="nofollow" class="external text" href="/reggie">Reggie! Level Editor</a>.
+Place your levels directly in the <i>/nsmb</i> folder on your SD card. For example, if you wanted to replace the level 1-1, the file on your SD card should be <i>/nsmb/01-01.arc</i>
+</p><p>A tutorial on how to use this with Reggie! can be found <a rel="nofollow" class="external text" href="/forums/viewtopic.php?f=20&amp;t=34">here</a>.
+</p><p><a href="../NSMBtemplate.xml" class="internal" title="NSMBtemplate.xml">Download</a>
+</p>
+<h2><span class="mw-headline" id="Super_Smash_Bros._Brawl">Super Smash Bros. Brawl</span></h2>
+<p>This can be used to try out stage and character mods, any files to replace go in <i>/ssbb</i>
+</p><p><a href="../SSBBtemplate.xml" class="internal" title="SSBBtemplate.xml">Download</a>
+</p>
+<h3><span class="mw-headline" id="File_Replacement_Code_Support">File Replacement Code Support</span></h3>
+<p>For those who already have been using the file replacement codes for Brawl, you can use this XML to seamlessly use your folders that are already set up in <i>/private</i>. Works for all regions.
+</p><p>Note that currently this XML will not replace some files, as they are named differently with the file code than what's on the disc. Textures should work, but you'll find that some files will not.
+</p><p><a href="../SSBBfiles.xml" class="internal" title="SSBBfiles.xml">Download</a>
+</p>
+<h2><span class="mw-headline" id="Tatsunoko_vs._Capcom">Tatsunoko vs. Capcom</span></h2>
+<p>This XML can be used to try out modifications to Tatsunoko vs. Capcom, such as music replacements. Files should go in <i>/tvc</i>
+</p><p><a href="../TVCtemplate.xml" class="internal" title="TVCtemplate.xml">Download</a>
+</p>
+<h2><span class="mw-headline" id="Super_Mario_Galaxy">Super Mario Galaxy</span></h2>
+<p>This XML can be used for testing out any stage mods for Super Mario Galaxy in the .arc file format. Files go into <i>/smg</i>.
+</p><p><a href="../SMG-Template.xml" class="internal" title="SMG-Template.xml">Download</a>
+</p>
+<!-- 
+NewPP limit report
+CPU time usage: 0.027 seconds
+Real time usage: 0.041 seconds
+Preprocessor visited node count: 35/1000000
+Preprocessor generated node count: 40/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key rvlution_wiki-riiv_:pcache:idhash:5-1!*!0!!en!*!* and timestamp 20181104042618
+ -->

@@ -1,0 +1,149 @@
+---
+title: RiiFS
+permalink: wiki/RiiFS/
+layout: wiki
+---
+<p>RiiFS is a simple custom network protocol used by Riivolution to allow a computer to act like a disk filesystem. This allows for both public streamable releases as well as private testing of modifications without needing to restart the game.
+</p>
+<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#RiiFS_C.2B.2B_Server"><span class="tocnumber">1</span> <span class="toctext">RiiFS C++ Server</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Readme"><span class="tocnumber">1.1</span> <span class="toctext">Readme</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="#Changelog"><span class="tocnumber">1.2</span> <span class="toctext">Changelog</span></a>
+<ul>
+<li class="toclevel-3 tocsection-4"><a href="#v1.03"><span class="tocnumber">1.2.1</span> <span class="toctext">v1.03</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-5"><a href="#RiiFS_C.23_Server"><span class="tocnumber">2</span> <span class="toctext">RiiFS C# Server</span></a>
+<ul>
+<li class="toclevel-2 tocsection-6"><a href="#Readme_2"><span class="tocnumber">2.1</span> <span class="toctext">Readme</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#Changelog_2"><span class="tocnumber">2.2</span> <span class="toctext">Changelog</span></a>
+<ul>
+<li class="toclevel-3 tocsection-8"><a href="#v1.03_2"><span class="tocnumber">2.2.1</span> <span class="toctext">v1.03</span></a></li>
+<li class="toclevel-3 tocsection-9"><a href="#v1.02"><span class="tocnumber">2.2.2</span> <span class="toctext">v1.02</span></a></li>
+<li class="toclevel-3 tocsection-10"><a href="#v1.01"><span class="tocnumber">2.2.3</span> <span class="toctext">v1.01</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-11"><a href="#Example_XML"><span class="tocnumber">3</span> <span class="toctext">Example XML</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="RiiFS_C.2B.2B_Server">RiiFS C++ Server</span></h2>
+<p>Native RiiFS server that will run on various platforms (Windows, Mac OS X, and Linux).
+</p><p><a href="../Riifs-server-c.zip" class="internal" title="Riifs-server-c.zip">Download v1.03</a>
+</p>
+<h3><span class="mw-headline" id="Readme">Readme</span></h3>
+<p>RiiFS C++ Server
+June 22, 2010
+</p><p>Usage: riifs &lt;path-to-root&gt; &lt;port&gt;
+</p>
+<ul>
+<li> path is optional, defaults to current directory
+</li>
+<li> port is optional, defaults to 1137
+</li>
+</ul>
+<p>The root given to the server is the root of the filesystem, and it's treated no differently than an SD card.
+Think about what that means:
+</p>
+<ul>
+<li> You can copy the contents of a Riivolution-ready SD card into a folder and point the server there, and it will work.
+</li>
+<li> Path names like external="/" will actually point to the root path the server is started with.
+</li>
+</ul>
+<h3><span class="mw-headline" id="Changelog">Changelog</span></h3>
+<h4><span class="mw-headline" id="v1.03">v1.03</span></h4>
+<p>June 22, 2010
+</p>
+<ul>
+<li> Initial release
+</li>
+</ul>
+<h2><span class="mw-headline" id="RiiFS_C.23_Server">RiiFS C# Server</span></h2>
+<p><a href="../Riifs-server-cs.zip" class="internal" title="Riifs-server-cs.zip">Download v1.03</a>
+</p>
+<h3><span class="mw-headline" id="Readme_2">Readme</span></h3>
+<p>RiiFS C# Server
+June 22, 2010
+</p><p>Requires Microsoft .NET 2.0 or Mono to run.
+</p><p>Usage: riifs.exe [OPTIONS] &lt;path-to-root&gt; &lt;port&gt;
+</p>
+<ul>
+<li> path is optional, defaults to current directory
+</li>
+<li> port is optional, defaults to 1137
+</li>
+<li> The -r option may be used to specify read-only mode
+</li>
+</ul>
+<p>The root given to the server is the root of the filesystem, and it's treated no differently than an SD card.
+Think about what that means:
+</p>
+<ul>
+<li> You can copy the contents of a Riivolution-ready SD card into a folder and point the server there, and it will work.
+</li>
+<li> Path names like external="/" will actually point to the root path the server is started with.
+</li>
+</ul>
+<h3><span class="mw-headline" id="Changelog_2">Changelog</span></h3>
+<h4><span class="mw-headline" id="v1.03_2">v1.03</span></h4>
+<p>June 22, 2010
+</p>
+<ul>
+<li> Support for Riivolution v1.03
+</li>
+<li> Major source refactoring
+</li>
+<li> Added broadcast connection mode
+</li>
+</ul>
+<h4><span class="mw-headline" id="v1.02">v1.02</span></h4>
+<p>March 28, 2010
+</p>
+<ul>
+<li> Support for Riivolution v1.02
+</li>
+<li> Cleanup and file read fixes
+</li>
+<li> Better logging format
+</li>
+</ul>
+<h4><span class="mw-headline" id="v1.01">v1.01</span></h4>
+<p>March 23, 2010
+</p>
+<ul>
+<li> Initial release
+</li>
+</ul>
+<h2><span class="mw-headline" id="Example_XML">Example XML</span></h2>
+<p>Riivolution will automatically connect to a RiiFS server on a local LAN at startup.
+</p><p>However, to get Riivolution to connect to a specific or external server it needs to have an XML file on the SD card in the Wii tell it to do so. Like so:
+</p>
+<pre>   &lt;wiidisc version="1"&gt;
+       &lt;!-- id is optional, omit it in order to make Riivolution connect to the server regardless of the game inserted in the drive. --&gt;
+       &lt;id game="SMN" /&gt;
+       
+       &lt;!-- address may be an IP address or a hostname/domain. --&gt;
+       &lt;network protocol="riifs" address="192.168.0.2" port="1137" /&gt;
+   &lt;/wiidisc&gt;
+</pre>
+<!-- 
+NewPP limit report
+CPU time usage: 0.023 seconds
+Real time usage: 0.025 seconds
+Preprocessor visited node count: 43/1000000
+Preprocessor generated node count: 48/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key rvlution_wiki-riiv_:pcache:idhash:28-1!*!*!!en!*!* and timestamp 20181104035208
+ -->

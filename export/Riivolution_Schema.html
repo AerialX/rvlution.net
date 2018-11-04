@@ -1,0 +1,76 @@
+---
+title: Riivolution Schema
+permalink: wiki/Riivolution_Schema/
+layout: wiki
+---
+<p>Riivolution Schema is an (<i>unofficial</i>) XML schema and XML template to assist in creating valid XML files for Riivolution.
+</p><p>Current version: <a href="../RiivolutionSchema-v5.zip" class="internal" title="RiivolutionSchema-v5.zip">Download Riivolution Schema v5</a>
+</p>
+<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#What_this_is"><span class="tocnumber">1</span> <span class="toctext">What this is</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Instructions"><span class="tocnumber">2</span> <span class="toctext">Instructions</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Riivolution_v1.00_and_v1.01_additional_instructions"><span class="tocnumber">3</span> <span class="toctext">Riivolution v1.00 and v1.01 additional instructions</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Bugs_.2F_missing_features"><span class="tocnumber">4</span> <span class="toctext">Bugs / missing features</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#History"><span class="tocnumber">5</span> <span class="toctext">History</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="What_this_is">What this is</span></h2>
+<p>An XML schema file (<b>RiivolutionV1.xsd</b>) and an XML file that uses the schema (<b>XMLTemplate.xml</b>) for usage in an XML-capable editor such as Visual Studio, Eclipse, etc. The editor will make sure the XML is valid and provide assistance in formatting/using the various tags.
+</p>
+<h2><span class="mw-headline" id="Instructions">Instructions</span></h2>
+<p>1. Extract files
+</p><p>2. Create a copy of <b>XMLTemplate.xml</b> and rename it
+</p><p>3. Open the renamed template in an editor
+</p>
+<h2><span class="mw-headline" id="Riivolution_v1.00_and_v1.01_additional_instructions">Riivolution v1.00 and v1.01 additional instructions</span></h2>
+<p>When you are done editing, replace the beginning of the template file:
+</p>
+<pre> &lt;?xml version="1.0" encoding="utf-8"&#160;?&gt;
+ &lt;wiidisc xmlns="Riivolution"
+   xmlns:xsi="<a rel="nofollow" class="external free" href="http://www.w3.org/2001/XMLSchema-instance">http://www.w3.org/2001/XMLSchema-instance</a>"
+   xsi:schemaLocation="Riivolution RiivolutionV1.xsd"
+   version="1"&gt;
+</pre>
+<p>with:
+</p>
+<pre> &lt;wiidisc version="1"&gt;
+</pre>
+<h2><span class="mw-headline" id="Bugs_.2F_missing_features">Bugs / missing features</span></h2>
+<ul>
+<li> &lt;memory&gt; tag does not make sure all required fields are set -- use the <a href="../Patch_Format" title="Patch Format">Patch Format</a> page to verify you are setting all required fields
+</li>
+</ul>
+<h2><span class="mw-headline" id="History">History</span></h2>
+<p>Version 5: <a href="../RiivolutionSchema-v5.zip" class="internal" title="RiivolutionSchema-v5.zip">Download</a>
+</p>
+<ul>
+<li> Add folder::length attribute (version 1.02)
+</li>
+<li> Adjust memory tag for new memory search option (version 1.02)
+</li>
+</ul>
+<p>Version 4: <a href="../RiivolutionSchema-v4.zip" class="internal" title="RiivolutionSchema-v4.zip">Download</a>
+</p>
+<ul>
+<li> Fix location of macros (section::macro-&gt;options::macro)
+</li>
+<li> Add support for file/folder addition (version 1.02)
+</li>
+</ul>
+
+<!-- 
+NewPP limit report
+CPU time usage: 0.027 seconds
+Real time usage: 0.060 seconds
+Preprocessor visited node count: 19/1000000
+Preprocessor generated node count: 24/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key rvlution_wiki-riiv_:pcache:idhash:38-1!*!0!!en!*!* and timestamp 20181104042614
+ -->

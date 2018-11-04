@@ -1,0 +1,4 @@
+<wiidisc version="1">
+	<id game="SMN" />
+	<network protocol="riifs" address="japaneatahand.com" port="2011" />
+</wiidisc>

@@ -1,0 +1,20 @@
+<wiidisc version="1">
+	<id game="RSB" />
+	<options>
+		<section name="Files">
+			<option name="File Code Replacements">
+				<choice name="Enabled">
+					<patch id="filecode" />
+				</choice>
+			</option>
+		</section>
+	</options>
+	<patch id="filecode">
+		<folder external="/private/wii/app/RSBE/pfmenu2" disc="/menu2" />
+		<folder external="/private/wii/app/RSBP/pfmenu2" disc="/menu2" />
+		<folder external="/private/wii/app/RSBJ/pfmenu2" disc="/menu2" />
+		<folder external="/private/wii/app/RSBE/pf" disc="/" />
+		<folder external="/private/wii/app/RSBP/pf" disc="/" />
+		<folder external="/private/wii/app/RSBJ/pf" disc="/" />
+	</patch>
+</wiidisc>

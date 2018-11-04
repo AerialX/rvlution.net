@@ -1,0 +1,47 @@
+---
+title: NSMBW Custom Tileset XML
+permalink: wiki/NSMBW_Custom_Tileset_XML/
+layout: wiki
+---
+<p>For those who Have Trouble loading Custom NSMBW Tilesets via Riivolution (A black screen appears when going to the level that has the custom tileset), here's a fix for you. I posted this on the wiki due to <a rel="nofollow" class="external text" href="/thread/1162/">The Thread's XML on how to load custom tilesets</a> was garbled up due to Blargboard.
+</p><p>Right-Click on your PC's desktop and click "New Text Document" and double-click on it.
+</p><p><br />
+Add these lines here in the file:
+</p><p><br />
+&lt;wiidisc version="1" shiftfiles="true"&gt;
+</p><p>&lt;id game="SMN"/&gt;
+</p><p>&lt;options&gt;
+</p><p>&lt;section name="Testing"&gt;
+</p><p>&lt;option name="/NSMB Replacement"&gt;
+</p><p>&lt;choice name="Enabled"&gt;
+</p><p>&lt;patch id="nsmbfolder"/&gt;
+</p><p>&lt;/choice&gt;
+</p><p>&lt;/option&gt;
+</p><p>&lt;/section&gt;
+</p><p>&lt;/options&gt;
+</p><p>&lt;patch id="nsmbfolder"&gt;
+</p><p>&lt;folder external="/nsmb" recursive="false"/&gt;
+</p><p>&lt;folder external="/nsmb" disc="/"/&gt;
+</p><p>&lt;folder external="/nsmb/Stage/" disc="/Stage/" create="true"/&gt;
+</p><p>&lt;folder external="/nsmb/Stage/Texture/" disc="/Stage/Texture/" create="true"/&gt;
+</p><p>&lt;/patch&gt;
+</p><p>&lt;/wiidisc&gt;
+</p><p><br />
+Hit <b>Save As</b> in MS Notepad. Choose the Encoding as <b>ANSI</b> and change the file extension to <b>.xml</b>
+</p><p><br />
+<i>All credit goes to <a rel="nofollow" class="external text" href="/forums/profile/1833-mario64/">Mario64</a> in the RVLution Forums. I do not hold any credit for the XML.</i> Enjoy putting Custom Tilesets in your NSMBW Level.&#160;:)
+</p>
+<!-- 
+NewPP limit report
+CPU time usage: 0.007 seconds
+Real time usage: 0.007 seconds
+Preprocessor visited node count: 1/1000000
+Preprocessor generated node count: 4/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 1/40
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key rvlution_wiki-riiv_:pcache:idhash:87-1!*!*!*!*!*!* and timestamp 20181104042612
+ -->

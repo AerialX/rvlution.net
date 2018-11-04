@@ -1,0 +1,16 @@
+<wiidisc version="1">
+	<id game="RSB" />
+	<options>
+		<section name="Testing">
+			<option name="/SSBB Replacement">
+				<choice name="Enabled">
+					<patch id="ssbbfolder" />
+				</choice>
+			</option>
+		</section>
+	</options>
+	<patch id="ssbbfolder">
+		<folder external="/ssbb" recursive="false" />
+		<folder external="/ssbb" disc="/" />
+	</patch>
+</wiidisc>

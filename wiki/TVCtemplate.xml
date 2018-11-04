@@ -1,0 +1,16 @@
+<wiidisc version="1">
+	<id game="STK" />
+	<options>
+		<section name="Testing">
+			<option name="/TVC Replacement">
+				<choice name="Enabled">
+					<patch id="tvcfolder" />
+				</choice>
+			</option>
+		</section>
+	</options>
+	<patch id="tvcfolder">
+		<folder external="/tvc" recursive="false" />
+		<folder external="/tvc" disc="/" />
+	</patch>
+</wiidisc>

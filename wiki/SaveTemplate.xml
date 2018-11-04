@@ -1,0 +1,12 @@
+<wiidisc version="1">
+	<options>
+		<section name="Redirected Savegame">
+			<option name="Savegame Redirection" default="1">
+				<choice name="Enabled"><patch id="redirectsave" /></choice>
+			</option>
+		</section>
+	</options>
+	<patch id="redirectsave">
+		<savegame external="/riivolution/save/{$__gameid}{$__region}" clone="true" />
+	</patch>
+</wiidisc>

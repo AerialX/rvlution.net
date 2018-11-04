@@ -1,0 +1,39 @@
+---
+title: Network
+permalink: wiki/Network/
+layout: wiki
+---
+<p>Riivolution supports modular filesystems in such a way that it is not necessarily limited to using SD cards and USB devices. Using a specially-formatted XML file, Riivolution will use the Wii's wifi to connect to a server and use it like any other filesystem it supports. This means that the patches are streamed over the internet, and instantly up-to-date. It can also be used on a personal level, to allow you to edit files without even restarting the game.
+</p><p>Check out the <a href="../List_of_RiiFS_servers" title="List of RiiFS servers">list of RiiFS servers</a> for a plug-and-play way to play game hacks.
+</p>
+<h2><span class="mw-headline" id="The_Network_XML_Element">The Network XML Element</span></h2>
+<p>A special element in the XML format can be used to direct Riivolution to connect to a server, which means that a SD or USB drive is required to initiate the connection. The element must be contained inside the <i>wiidisc</i> element in a normal <a href="../Patch_Format" title="Patch Format">Patch XML</a>, and has the following structure:
+</p>
+<pre>   &lt;network protocol="riifs" address="192.168.1.1" port="1137" /&gt;
+</pre>
+<h3><span class="mw-headline" id="Attributes">Attributes</span></h3>
+<ul>
+<li> <i>protocol</i> - <b>string</b> - <i>optional</i> - Defaults to "<a href="../RiiFS" title="RiiFS">riifs</a>", as that is the only supported network <i>protocol</i> at the time of writing.
+</li>
+<li> <i>address</i> - <b>string</b> - <i>required</i> - This is the IP address of the server to connect to.
+</li>
+<li> <i>port</i> - <b>integer</b> - <i>optional</i> - This is the network port to connect to; defaults to 1137, which is the default <a href="../RiiFS" title="RiiFS">RiiFS</a> port.
+</li>
+<li> <i>log</i> - <b>boolean</b> - <i>optional</i> - Defaults to <i>false</i>, will redirect stdout/fwrite over the network when set.
+</li>
+</ul>
+
+<!-- 
+NewPP limit report
+CPU time usage: 0.010 seconds
+Real time usage: 0.015 seconds
+Preprocessor visited node count: 7/1000000
+Preprocessor generated node count: 12/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key rvlution_wiki-riiv_:pcache:idhash:24-1!*!0!!*!*!* and timestamp 20181104042616
+ -->

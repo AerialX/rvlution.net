@@ -1,0 +1,115 @@
+---
+title: Ocarina Codes
+permalink: wiki/Ocarina_Codes/
+layout: wiki
+---
+<p>Riivolution includes a special <a href="../Patch_Format" title="Patch Format">Patch Format</a> element that will allow the Ocarina patch code engine to be run.
+While Ocarina code support isn't built in to Riivolution, using this patch in an XML will allow you to use them.
+</p>
+<h2><span class="mw-headline" id="Download">Download</span></h2>
+<p>A Ocarina download compatible with your current setup (GCT file goes in <i>/codes/GAMEID.gct</i> like it would with Gecko OS) has been put together and can be extracted straight to your SD card.
+However, the included XML requires two changes to work for a game; these points are marked in the XML when you open it. They require you to know the game ID and filename of the GCT file you're using.
+</p><p><a href="../RiiOcarina.zip" class="internal" title="RiiOcarina.zip">Download</a>
+</p>
+<h2><span class="mw-headline" id="The_Ocarina_Memory_Element">The Ocarina Memory Element</span></h2>
+<p>A special version of a memory element can be used like so:
+</p>
+<pre>  &lt;memory ocarina="true" value="7CE33B783887003438A7003838C7004C" offset="0x800018A8" /&gt;
+</pre>
+<p>This element contains two important attributes. The <i>value</i> attribute is used as a pattern to look for the point in the game's binary to hook into the game at.
+The <i>offset</i> attribute defines the position at which the hook should branch to.
+</p><p>Riivolution first looks for the <i>value</i> pattern, and then finds the next <b>blr</b> opcode that comes after it. This will be patched with an unconditional branch to the offset specified in <i>offset</i>.
+The Ocarina code handler can then be placed in memory at that offset and used like normal.
+</p>
+<h2><span class="mw-headline" id="XML_Template">XML Template</span></h2>
+<p>Here's an example Riivolution XML that could be used as a base for running the Ocarina engine.
+</p>
+<pre>&lt;wiidisc version="1"&gt; &lt;options&gt;
+       &lt;section name="Ocarina"&gt;
+           &lt;option name="Ocarina Handler"&gt;
+               &lt;choice name="VI Hook"&gt;
+                   &lt;patch id="ocarinabase_vi" /&gt;
+                   &lt;patch id="ocarinabase" /&gt;
+               &lt;/choice&gt;
+               &lt;choice name="KPAD Hook"&gt;
+                   &lt;patch id="ocarinabase_kpad" /&gt;
+                   &lt;patch id="ocarinabase" /&gt;
+               &lt;/choice&gt;
+               &lt;choice name="Joypad Hook"&gt;
+                   &lt;patch id="ocarinabase_joypad" /&gt;
+                   &lt;patch id="ocarinabase" /&gt;
+               &lt;/choice&gt;
+               &lt;choice name="GXDraw Hook"&gt;
+                   &lt;patch id="ocarinabase_gxdraw" /&gt;
+                   &lt;patch id="ocarinabase" /&gt;
+               &lt;/choice&gt;
+               &lt;choice name="GXFlush Hook"&gt;
+                   &lt;patch id="ocarinabase_gxflush" /&gt;
+                   &lt;patch id="ocarinabase" /&gt;
+               &lt;/choice&gt;
+               &lt;choice name="OSSleep Hook"&gt;
+                   &lt;patch id="ocarinabase_ossleep" /&gt;
+                   &lt;patch id="ocarinabase" /&gt;
+               &lt;/choice&gt;
+               &lt;choice name="AxNextFrame Hook"&gt;
+                   &lt;patch id="ocarinabase_axnextframe" /&gt;
+                   &lt;patch id="ocarinabase" /&gt;
+               &lt;/choice&gt;
+           &lt;/option&gt;
+           &lt;option name="ocarina_codes"&gt;
+               &lt;choice name="Enabled"&gt;
+                   &lt;patch id="ocarinacodes" /&gt;
+               &lt;/choice&gt;
+           &lt;/option&gt;
+       &lt;/section&gt;
+   &lt;/options&gt;
+</pre>
+<pre>   &lt;patch id="ocarinabase_vi"&gt;
+       &lt;memory ocarina="true" value="7CE33B783887003438A7003838C7004C" offset="0x800018A8" /&gt;
+   &lt;/patch&gt;
+   &lt;patch id="ocarinabase_kpad"&gt;
+       &lt;memory ocarina="true" value="9A3F005E38AE0080389FFFFC7E0903A6" offset="0x800018A8" /&gt;
+</pre>
+<pre>       &lt;memory ocarina="true" value="801D0060901E0060801D0064901E0064801D0068901E0068" offset="0x800018A8" /&gt;
+   &lt;/patch&gt;
+   &lt;patch id="ocarinabase_joypad"&gt;
+       &lt;memory ocarina="true" value="3AB500013A73000C2C1500043B18000C" offset="0x800018A8" /&gt;
+   &lt;/patch&gt;
+   &lt;patch id="ocarinabase_gxdraw"&gt;
+       &lt;memory ocarina="true" value="3CA0CC01380000613C80450098058000" offset="0x800018A8" /&gt;
+   &lt;/patch&gt;
+   &lt;patch id="ocarinabase_gxflush"&gt;
+       &lt;memory ocarina="true" value="90010014800305FC2C00000041820008" offset="0x800018A8" /&gt;
+   &lt;/patch&gt;
+   &lt;patch id="ocarinabase_ossleep"&gt;
+       &lt;memory ocarina="true" value="90A402E0806502E4908502E42C030000" offset="0x800018A8" /&gt;
+   &lt;/patch&gt;
+   &lt;patch id="ocarinabase_axnextframe"&gt;
+       &lt;memory ocarina="true" value="3800000E7FE3FB78B005000038800080" offset="0x800018A8" /&gt;
+   &lt;/patch&gt;
+   &lt;patch id="ocarinabase"&gt;
+       &lt;memory valuefile="codehandler.bin" offset="0x80001800" /&gt;
+   &lt;/patch&gt;
+   &lt;patch id="ocarinacodes"&gt;
+       &lt;memory offset="0x00001CDE" value="8000" /&gt;
+       &lt;memory offset="0x00001CE2" value="28B8" /&gt;
+       &lt;memory offset="0x00001F5A" value="8000" /&gt;
+       &lt;memory offset="0x00001F5E" value="28B8" /&gt;
+       &lt;memory valuefile="/codes/{$__gameid}{$__region}{$__maker}.gct" offset="0x800028B8" /&gt;
+   &lt;/patch&gt;
+&lt;/wiidisc&gt;
+</pre>
+<!-- 
+NewPP limit report
+CPU time usage: 0.027 seconds
+Real time usage: 0.070 seconds
+Preprocessor visited node count: 11/1000000
+Preprocessor generated node count: 20/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key rvlution_wiki-riiv_:pcache:idhash:4-1!*!0!!*!*!* and timestamp 20181104042618
+ -->

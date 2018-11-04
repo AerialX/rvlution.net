@@ -1,0 +1,388 @@
+---
+title: Patch Format
+permalink: wiki/Patch_Format/
+layout: wiki
+---
+<p>Riivolution does its magic according to XML files found in the folder <i>/riivolution</i> on an SD card or USB drive.
+The format is very extensive and flexible; many different kind of game modifications can be made this way. This page will attempt to explain how to write powerful XML files.
+The <a href="../Riivolution_Schema" title="Riivolution Schema">Riivolution Schema</a> can also be used to verify that your XML is set up properly.
+</p><p>If you're just interested in getting Riivolution running, or want to see an example, look over at the <a href="../Patch_Templates" title="Patch Templates">Patch Templates</a> page; this page is meant for power users and people planning on releasing packaged game mods.
+</p>
+<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#The_Basics"><span class="tocnumber">1</span> <span class="toctext">The Basics</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Terminology"><span class="tocnumber">2</span> <span class="toctext">Terminology</span></a>
+<ul>
+<li class="toclevel-2 tocsection-3"><a href="#Integer"><span class="tocnumber">2.1</span> <span class="toctext">Integer</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#Boolean"><span class="tocnumber">2.2</span> <span class="toctext">Boolean</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#Hex_String"><span class="tocnumber">2.3</span> <span class="toctext">Hex String</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#String"><span class="tocnumber">2.4</span> <span class="toctext">String</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#Path"><span class="tocnumber">2.5</span> <span class="toctext">Path</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="#Parameters"><span class="tocnumber">2.6</span> <span class="toctext">Parameters</span></a>
+<ul>
+<li class="toclevel-3 tocsection-9"><a href="#Default_Parameters"><span class="tocnumber">2.6.1</span> <span class="toctext">Default Parameters</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-10"><a href="#The_Root"><span class="tocnumber">3</span> <span class="toctext">The Root</span></a>
+<ul>
+<li class="toclevel-2 tocsection-11"><a href="#Attributes"><span class="tocnumber">3.1</span> <span class="toctext">Attributes</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-12"><a href="#ID"><span class="tocnumber">4</span> <span class="toctext">ID</span></a>
+<ul>
+<li class="toclevel-2 tocsection-13"><a href="#Attributes_2"><span class="tocnumber">4.1</span> <span class="toctext">Attributes</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-14"><a href="#Options"><span class="tocnumber">5</span> <span class="toctext">Options</span></a>
+<ul>
+<li class="toclevel-2 tocsection-15"><a href="#Macros"><span class="tocnumber">5.1</span> <span class="toctext">Macros</span></a>
+<ul>
+<li class="toclevel-3 tocsection-16"><a href="#Attributes_3"><span class="tocnumber">5.1.1</span> <span class="toctext">Attributes</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-17"><a href="#Sections"><span class="tocnumber">5.2</span> <span class="toctext">Sections</span></a>
+<ul>
+<li class="toclevel-3 tocsection-18"><a href="#Attributes_4"><span class="tocnumber">5.2.1</span> <span class="toctext">Attributes</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-19"><a href="#Options_2"><span class="tocnumber">5.3</span> <span class="toctext">Options</span></a>
+<ul>
+<li class="toclevel-3 tocsection-20"><a href="#Attributes_5"><span class="tocnumber">5.3.1</span> <span class="toctext">Attributes</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-21"><a href="#Choices"><span class="tocnumber">5.4</span> <span class="toctext">Choices</span></a>
+<ul>
+<li class="toclevel-3 tocsection-22"><a href="#Attributes_6"><span class="tocnumber">5.4.1</span> <span class="toctext">Attributes</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-23"><a href="#Patches"><span class="tocnumber">6</span> <span class="toctext">Patches</span></a>
+<ul>
+<li class="toclevel-2 tocsection-24"><a href="#Attributes_7"><span class="tocnumber">6.1</span> <span class="toctext">Attributes</span></a></li>
+<li class="toclevel-2 tocsection-25"><a href="#File_Patch"><span class="tocnumber">6.2</span> <span class="toctext">File Patch</span></a>
+<ul>
+<li class="toclevel-3 tocsection-26"><a href="#Attributes_8"><span class="tocnumber">6.2.1</span> <span class="toctext">Attributes</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-27"><a href="#Folder_Patch"><span class="tocnumber">6.3</span> <span class="toctext">Folder Patch</span></a>
+<ul>
+<li class="toclevel-3 tocsection-28"><a href="#Attributes_9"><span class="tocnumber">6.3.1</span> <span class="toctext">Attributes</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-29"><a href="#Savegame_Patch"><span class="tocnumber">6.4</span> <span class="toctext">Savegame Patch</span></a>
+<ul>
+<li class="toclevel-3 tocsection-30"><a href="#Attributes_10"><span class="tocnumber">6.4.1</span> <span class="toctext">Attributes</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-31"><a href="#Memory_Patch"><span class="tocnumber">6.5</span> <span class="toctext">Memory Patch</span></a>
+<ul>
+<li class="toclevel-3 tocsection-32"><a href="#Attributes_11"><span class="tocnumber">6.5.1</span> <span class="toctext">Attributes</span></a></li>
+<li class="toclevel-3 tocsection-33"><a href="#Ocarina_Patch"><span class="tocnumber">6.5.2</span> <span class="toctext">Ocarina Patch</span></a>
+<ul>
+<li class="toclevel-4 tocsection-34"><a href="#Attributes_12"><span class="tocnumber">6.5.2.1</span> <span class="toctext">Attributes</span></a></li>
+</ul>
+</li>
+<li class="toclevel-3 tocsection-35"><a href="#Search_Patch"><span class="tocnumber">6.5.3</span> <span class="toctext">Search Patch</span></a>
+<ul>
+<li class="toclevel-4 tocsection-36"><a href="#Attributes_13"><span class="tocnumber">6.5.3.1</span> <span class="toctext">Attributes</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="The_Basics">The Basics</span></h2>
+<p>Riivolution patch XMLs are made up of three parts:
+</p>
+<ul>
+<li> The <i>id</i> tag, which specifies which game it should be applied to, if any.
+</li>
+<li> The <i>options</i> tag, which organizes patches into an Option-Choice menu system.
+</li>
+<li> The <i>patch</i>es themselves, which define what files and memory to replace and how.
+</li>
+</ul>
+<h2><span class="mw-headline" id="Terminology">Terminology</span></h2>
+<p>Each element attribute has a <b>type</b> of data that behaves in a certain way.
+</p>
+<h3><span class="mw-headline" id="Integer">Integer</span></h3>
+<p>An <b>integer</b> type only accepts numbers, which must be in either decimal or hexadecimal form. Numbers will only be recognized as hexadecimal if preceeded by "0x".
+</p>
+<h3><span class="mw-headline" id="Boolean">Boolean</span></h3>
+<p>A <b>boolean</b> type can only be <i>true</i> or <i>false</i>, <i>yes</i> or <i>no</i>.
+</p>
+<h3><span class="mw-headline" id="Hex_String">Hex String</span></h3>
+<p>A <b>hex string</b> is a string of hex characters, treated as data. It may or may not be preceeded by "0x", and the number of characters in it must be a multiple of two (it cannot have half a byte).
+</p>
+<h3><span class="mw-headline" id="String">String</span></h3>
+<p>A <b>string</b> is just a string of one or more characters. There's nothing really special about them.
+</p>
+<h3><span class="mw-headline" id="Path">Path</span></h3>
+<p>A <b>path</b> is special because they can be either absolute or relative to a root, which defaults to <b>/riivolution</b>. The root can be changed at either the <i>wiidisc</i> or <i>patch</i> level, and whenever a relative <b>path</b> is used, it is combined with the current root.
+</p>
+<h3><span class="mw-headline" id="Parameters">Parameters</span></h3>
+<p>A <i>param</i> isn't an attribute type, but rather, a special node that can be used in many different places. They can be applied at the <i>option</i>, <i>choice</i>, or <i>patch</i> level under <i>options</i>.
+They assign a value to a name, which can be used for dynamic replacements within <b>path</b>s of <i>patch</i>es.
+</p><p>For example, if I set a <i>param</i> to be the following...
+</p>
+<pre>   &lt;param name="slot" value="1" /&gt;
+</pre>
+<p>Then put this inside an <i>option</i>, any patches used in that <i>option</i> will be able to have their <b>path</b>s affected by it. The format to use in a <b>path</b> is "${name}", so I could set up a patch like so...
+</p>
+<pre>   &lt;file disc="/testfile{$slot}.arc" external="test{$slot}.arc" /&gt;
+</pre>
+<p>Which would replace {$slot} with "1" when applied. Note that if a <i>param</i> name isn't set, it will be blanked out. So if a different option were to use this <i>file</i> patch, it would try replacing "/testfile.arc" rather than "/testfile1.arc" as it would under the <i>option</i> with the <i>param</i> set.
+</p>
+<h4><span class="mw-headline" id="Default_Parameters">Default Parameters</span></h4>
+<p>Riivolution provides a few built-in <i>param</i>s that you can use inside of your XMLs. They describe the disc currently in the drive and are as follows:
+</p>
+<pre>{$__gameid} contains the first three characters of the Game ID. For example, "RSB" for Super Smash Bros. Brawl
+{$__region} contains the region character of the Game ID, usually "E", "P", or "J"
+{$__maker}  contains the maker code of the Game ID. For example, "01" is Nintendo.
+</pre>
+<p>Using these together can be used to get the full Game ID, "RSBE01", like so:
+</p>
+<pre>{$__gameid}{$__region}{$__maker}
+</pre>
+<h2><span class="mw-headline" id="The_Root">The Root</span></h2>
+<p>All Riivolution XMLs are encompassed in a root <i>wiidisc</i> node, like so:
+</p>
+<pre>   &lt;wiidisc version="1" root="/riivolution"&gt;
+       ...
+   &lt;/wiidisc&gt;
+</pre>
+<h3><span class="mw-headline" id="Attributes">Attributes</span></h3>
+<ul>
+<li> <i>version</i> - <b>integer</b> - <i>required</i> - Riivolution v1.0 only supports XMLs with a version of 1.
+</li>
+<li> <i>root</i> - <i>path</i> - <i>optional</i> - Used as the root for all paths used within this XML.
+</li>
+</ul>
+<h2><span class="mw-headline" id="ID">ID</span></h2>
+<p>The <i>id</i> tag is meant to make sure an XML is only applied to the game it was written for. If it is ommitted, the XML will be loaded for any game. There can not be more than one ID tag in one XML.
+</p><p>The <i>id</i> tag can specify the game ID, developer, disc number, version, and region(s). Any combination of these are allowed, and anything ommitted or empty will allow everything through. Here's an example:
+</p>
+<pre>   &lt;id game="SZA" developer="69" disc="0" version="0"&gt;
+       &lt;region type="P" /&gt;
+       &lt;region type="E" /&gt;
+   &lt;/id&gt;
+</pre>
+<p>The previous example will make sure the XML works for both PAL and NTSC versions of Rock Band 2.
+</p>
+<h3><span class="mw-headline" id="Attributes_2">Attributes</span></h3>
+<ul>
+<li> <i>game</i> - <b>string</b> - <i>optional</i> - Up to three characters (or four if you're too lazy to use the region nodes and want to restrict it to one region) to match the disc's Game ID. Usually starts with a 'R' or 'S'.
+</li>
+<li> <i>developer</i> - <b>string</b> - <i>optional</i> - Two characters used to identify the makers of the game.
+</li>
+<li> <i>disc</i> - <b>integer</b> - <i>optional</i> - One byte specifying the disc number of the game. This is usually 0, but may be 1 for the second disc of a multi-disc game - like Tales of Symphonia - and so on.
+</li>
+<li> <i>version</i> - <b>integer</b> - <i>optional</i> - Another byte specifying the disc version. This is again usually 0, but may be increased for game reprints.
+</li>
+</ul>
+<h2><span class="mw-headline" id="Options">Options</span></h2>
+<p>All <i>section</i>s of an XML must be encompassed by <i>options</i> tags:
+</p>
+<pre>   &lt;options&gt;
+       ...
+   &lt;/options&gt;
+</pre>
+<p>There are no attributes that can be used here.
+</p>
+<h3><span class="mw-headline" id="Macros">Macros</span></h3>
+<p>Macros can be used to clone an <i>option</i> multiple times, while giving it a different name and set of <i>param</i>s for each clone.
+</p>
+<pre>   &lt;macro id="optionid" name="New Option Name"&gt;
+       &lt;param name="paramname" value="value" /&gt;
+   &lt;/macro&gt;
+</pre>
+<h4><span class="mw-headline" id="Attributes_3">Attributes</span></h4>
+<ul>
+<li> <i>id</i> - <b>string</b> - <i>required</i> - The <i>id</i> of the option to clone.
+</li>
+<li> <i>name</i> - <b>string</b> - <i>required</i> - The new <i>name</i> to set to the cloned option.
+</li>
+<li> The <i>macro</i> node can contain numerous <i>param</i> nodes. Without them it's not very useful.
+</li>
+</ul>
+<h3><span class="mw-headline" id="Sections">Sections</span></h3>
+<p>A <i>section</i> represents a page in the GUI, though they can be split up into multiple pages if they contain too many options. They contain options, and have no attribute but a name:
+</p>
+<pre>   &lt;section name="Levels"&gt;
+       ...
+   &lt;/section&gt;
+</pre>
+<h4><span class="mw-headline" id="Attributes_4">Attributes</span></h4>
+<ul>
+<li> <i>name</i> - <b>string</b> - <i>required</i> - The <i>name</i> of the section as it should show up in the program.
+</li>
+</ul>
+<h3><span class="mw-headline" id="Options_2">Options</span></h3>
+<p>An <i>option</i> represents something modifiable in the program. It contains <i>choice</i>s, and only one can be active at any given time. It can hold <i>param</i>s, and also can always be set to disabled.
+</p>
+<pre>   &lt;option id="optionid" name="My Option" default="1"&gt;
+       ...
+   &lt;/option&gt;
+</pre>
+<h4><span class="mw-headline" id="Attributes_5">Attributes</span></h4>
+<ul>
+<li> <i>id</i> - <b>string</b> - <i>optional</i> - Used for both allowing an <i>option</i> to be <i>macro</i>ed, as well as combining options from two different XMLs (they must be under the same section name as well).
+</li>
+<li> <i>name</i> - <b>string</b> - <i>required</i> - The name of the option to be shown in the program.
+</li>
+<li> <i>default</i> - <b>integer</b> - <i>optional</i> - The index of the default choice to be selected when the program first starts. Once the user has saved their settings (launched a game), this is ignored and the last-used choice is set.<br />The index is 1-based, because setting it to 0 is disabled (this is the default when it's not specified).
+</li>
+</ul>
+<h3><span class="mw-headline" id="Choices">Choices</span></h3>
+<p>A <i>choice</i> represents one choice within an <i>option</i>. It can also hold <i>param</i>s, and references patches to be applied; these <i>patch</i> subnodes can also have <i>param</i>s applied to them.
+</p>
+<pre>   &lt;choice name="Choice Name"&gt;
+       &lt;patch id="patchid" /&gt;
+       &lt;patch id="anotherpatch /&gt;
+   &lt;/choice&gt;
+</pre>
+<h4><span class="mw-headline" id="Attributes_6">Attributes</span></h4>
+<ul>
+<li> <i>name</i> - <b>string</b> - <i>required</i> - This is the name of the <i>choice</i> as it appears in the program.
+</li>
+<li> <i>patch</i>&#160;: <i>id</i> - <b>string</b> - <i>required</i> - The ID of the <i>patch</i> to enable when this choice is selected. This refers to the <i>patch</i>es defined in the next section.
+</li>
+</ul>
+<h2><span class="mw-headline" id="Patches">Patches</span></h2>
+<p>A <i>patch</i> is a set of commands that Riivolution will execute when the proper choice is selected. It can contain <i>file</i>, <i>folder</i>, and <i>memory</i> patches, and follows this format...
+</p>
+<pre>   &lt;patch id="patchid" root="/path"&gt;
+       ...
+   &lt;/patch&gt;
+</pre>
+<h4><span class="mw-headline" id="Attributes_7">Attributes</span></h4>
+<ul>
+<li> <i>id</i> - <b>string</b> - <i>required</i> - This is the <i>id</i> that a <i>choice</i> will reference in order to enable the patch.
+</li>
+<li> <i>root</i> - <b>path</b> - <i>optional</i> - This can set the root path for all items in this patch.
+</li>
+</ul>
+<h3><span class="mw-headline" id="File_Patch">File Patch</span></h3>
+<p>A <i>file</i> patch will replace the contents of one file on disc with one from an external device.
+</p>
+<pre>   &lt;file disc="/filename.arc" external="filename.arc" resize="true" create="false" offset="0x10" length="0x100" /&gt;
+</pre>
+<h4><span class="mw-headline" id="Attributes_8">Attributes</span></h4>
+<ul>
+<li> <i>disc</i> - <b>disc path</b> - <i>required</i> - The file on disc to replace. This can be rooted as a full disc path or just a filename to search for.
+</li>
+<li> <i>external</i> - <b>path</b> - <i>required</i> - The file on SD/USB to replace the <i>disc</i> file with.
+</li>
+<li> <i>resize</i> - <b>boolean</b> - <i>optional</i> - Defaults to <i>true</i>, specifies whether to resize the <i>disc</i> file to the <i>external</i> file.
+</li>
+<li> <i>create</i> - <b>boolean</b> - <i>optional</i> - Defaults to <i>false</i>, specifies whether to add the file on the <i>disc</i> if it does not exist.
+</li>
+<li> <i>offset</i> - <b>integer</b> - <i>optional</i> - The <i>offset</i> into the disc file to start replacing; defaults to 0 (beginning of the file).
+</li>
+<li> <i>length</i> - <b>integer</b> - <i>optional</i> - The <i>length</i> specifies how much to patch the file. If not specified, or set to 0, it will default to the size of the <i>external</i> file.
+</li>
+</ul>
+<h3><span class="mw-headline" id="Folder_Patch">Folder Patch</span></h3>
+<p>A <i>folder</i> patch replaces a number of files from an external device onto the disc.
+</p>
+<pre>   &lt;folder disc="/filename.arc" external="filename.arc" resize="true" create="false" recursive="true" length="0x1000" /&gt;
+</pre>
+<h4><span class="mw-headline" id="Attributes_9">Attributes</span></h4>
+<ul>
+<li> <i>disc</i> - <b>disc path</b> - <i>optional</i> - The folder on disc to replace. This can be empty or omitted in order to just do a filename search without a specific folder.
+</li>
+<li> <i>external</i> - <b>path</b> - <i>required</i> - The folder on SD/USB to replace the <i>disc</i> files with.
+</li>
+<li> <i>resize</i> - <b>boolean</b> - <i>optional</i> - Defaults to <i>true</i>, specifies whether to resize the <i>disc</i> files to the ones found in the <i>external</i> folder.
+</li>
+<li> <i>create</i> - <b>boolean</b> - <i>optional</i> - Defaults to <i>false</i>, specifies whether to add any files and folders (if <i>recursive</i> == <i>true</i>) to the <i>disc</i> folder if they're not found.
+</li>
+<li> <i>recursive</i> - <b>boolean</b> - <i>optional</i> - Defaults to <i>true</i> and tells Riivolution whether to go looking in subfolders for other files to replace.<br />This option only works when the <i>disc</i> path is rooted and set to a folder.
+</li>
+<li> <i>length</i> - <b>integer</b> - <i>optional</i> - The <i>length</i> specifies how much to patch each file in the folder. It can be used to expand files in a folder for testing purposed. If not specified, or set to 0, it will default to the size of each <i>external</i> file.
+</li>
+</ul>
+<h3><span class="mw-headline" id="Savegame_Patch">Savegame Patch</span></h3>
+<p>A <i>savegame</i> patch will redirect a game's savegame to the external path specified. It can be used to store a save on SD/USB/Wifi without corrupting a player's original save when playing a game hack with different stages. Check out the <a href="../Patch_Templates#Redirected_Savegames" title="Patch Templates">Savegame Template</a> for a universal savegame XML.
+</p>
+<pre>   &lt;savegame external="/riivolution/save" clone="true" /&gt;
+</pre>
+<h4><span class="mw-headline" id="Attributes_10">Attributes</span></h4>
+<ul>
+<li> <i>external</i> - <b>path</b> - <i>required</i> - The folder on SD/USB to store the game's savefile inside. It will be created if it does not exist.
+</li>
+<li> <i>clone</i> - <b>boolean</b> - <i>optional</i> - Defaults to <i>true</i>, specifies whether to copy the Wii's current savegame to the <i>external</i> folder before starting the game. When set to <i>true</i>, this is only done when the <i>external</i> folder is empty, so only on first startup or if it's been deleted. When set to <i>false</i>, it begin an entirely new save if the <i>external</i> folder is empty.
+</li>
+</ul>
+<h3><span class="mw-headline" id="Memory_Patch">Memory Patch</span></h3>
+<p>There are a few different kinds of <i>memory</i> patches, and they all deal with patching the Wii's memory right before a game loads. They can be used to apply various different ASM hacks to games.
+</p><p><b>NOTE</b>: The <i>valuefile</i> attribute is a <b>path</b>, and <i>param</i>s can be used in it as of Riivolution v1.04.
+</p><p>The default <i>memory</i> patch looks like the following, and is used to write values to a set address...
+</p>
+<pre>   &lt;memory offset="0x80001000" value="0F73AB3D" original="1337BAAD" /&gt;
+   &lt;memory offset="0x80001000" valuefile="/file.bin" /&gt;
+</pre>
+<h5><span class="mw-headline" id="Attributes_11">Attributes</span></h5>
+<ul>
+<li> <i>offset</i> - <b>integer</b> - <i>required</i> - The <i>offset</i> in memory at which to write and/or verify.
+</li>
+<li> <i>value</i> - <b>hex string</b> - <i>required</i> - The <i>value</i> to write to memory at. Must be a string of hex characters, and its length must be a multiple of two.
+</li>
+<li> <i>valuefile</i> - <b>path</b> - <i>required</i> - An alternative to <i>value</i> is to specify a file path to read the value from instead. Either <i>valuefile</i> or <i>value</i> must be specified, and the whole file will be used.
+</li>
+<li> <i>original</i> - <b>hex string</b> - <i>optional</i> - If <i>original</i> is specified, but does not match the memory at that address, <i>value</i> will not be written to memory.
+</li>
+</ul>
+<h4><span class="mw-headline" id="Ocarina_Patch">Ocarina Patch</span></h4>
+<p>An <a href="../Ocarina_Codes" title="Ocarina Codes">Ocarina Patch</a> will look in the dol for the value specified, and then find the next occurring <b>blr</b> and replace it with a branch to <i>offset</i>.
+</p>
+<pre>   &lt;memory offset="0x80001800" value="0F73AB3D" ocarina="true" /&gt;
+</pre>
+<h5><span class="mw-headline" id="Attributes_12">Attributes</span></h5>
+<ul>
+<li> <i>offset</i> - <b>integer</b> - <i>required</i> - The <i>offset</i> is the offset in memory of the location to branch to.
+</li>
+<li> <i>value</i> - <b>hex string</b> - <i>required</i> - The <i>value</i> pattern to search the game binary for.
+</li>
+<li> <i>ocarina</i> - <b>boolean</b> - <i>required</i> - Must be true for this form to work.
+</li>
+</ul>
+<h4><span class="mw-headline" id="Search_Patch">Search Patch</span></h4>
+<p>A <i>memory</i> <i>search</i> patch can be used to replace a pattern in the main executable dynamically.
+</p>
+<pre>   &lt;memory original="1337BAAD" value="831378F2" align="4" search="true" /&gt;
+</pre>
+<h5><span class="mw-headline" id="Attributes_13">Attributes</span></h5>
+<ul>
+<li> <i>original</i> - <b>hex string</b> - <i>required</i> - The <i>original</i> pattern to search the game binary for.
+</li>
+<li> <i>value</i> - <b>hex string</b> - <i>required</i> - The <i>value</i> to replace the original pattern with. Must be the same length.
+</li>
+<li> <i>valuefile</i> - <b>path</b> - <i>required</i> - An alternative to <i>value</i> is to specify a file path to read the value from instead. Either <i>valuefile</i> or <i>value</i> must be specified, and the whole file will be used.
+</li>
+<li> <i>align</i> - <b>integer</b> - <i>optional</i> - The byte <i>align</i>ment to search with. Defaults to 1, but often should be higher in order to save time when searching.
+</li>
+<li> <i>search</i> - <b>boolean</b> - <i>required</i> - Must be true for this form to work.
+</li>
+</ul>
+
+<!-- 
+NewPP limit report
+CPU time usage: 0.020 seconds
+Real time usage: 0.022 seconds
+Preprocessor visited node count: 145/1000000
+Preprocessor generated node count: 152/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key rvlution_wiki-riiv_:pcache:idhash:6-1!*!0!!en!*!* and timestamp 20181104042618
+ -->

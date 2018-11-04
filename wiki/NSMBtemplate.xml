@@ -1,0 +1,16 @@
+<wiidisc version="1">
+	<id game="SMN" />
+	<options>
+		<section name="Testing">
+			<option name="/NSMB Replacement">
+				<choice name="Enabled">
+					<patch id="nsmbfolder" />
+				</choice>
+			</option>
+		</section>
+	</options>
+	<patch id="nsmbfolder">
+		<folder external="/nsmb" recursive="false" />
+		<folder external="/nsmb" disc="/" />
+	</patch>
+</wiidisc>
