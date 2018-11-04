@@ -48,19 +48,3 @@ EOF
 	} > "$FILENAME.html"
 	sed -i -e 's|http://rvlution.net/wiki/|../|g' -e 's|http://rvlution.net||g' -e 's|/riivolution/images/./../|../|g' "$FILENAME.html"
 done
-cat > wiki/FAQ.html <<EOF
----
-title: FAQ
-permalink: wiki/FAQ/
-redirect_to:
-- /wiki/Frequently_Asked_Questions/
----
-EOF
-cat > wiki/index.html <<EOF
----
-title: Riivolution
-permalink: wiki/
-redirect_to:
-- /wiki/Main_Page/
----
-EOF
