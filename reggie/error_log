@@ -1,0 +1,2 @@
+[03-Apr-2010 02:57:13] PHP Warning:  file_get_contents(downloads/Reggie_r2_Win32.zip.counter) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: No such file or directory in /home/waninkok/public_html/RVLution/reggie/index.php on line 133
+[03-Apr-2010 02:57:13] PHP Warning:  file_get_contents(downloads/Reggie_r2_source.zip.counter) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: No such file or directory in /home/waninkok/public_html/RVLution/reggie/index.php on line 136
